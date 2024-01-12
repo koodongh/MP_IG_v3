@@ -187,7 +187,7 @@ def setLineTriggerConf(camera):
     
     # 设置触发沿
     trigActivationEnumNode = acqCtrl.contents.triggerActivation(acqCtrl)
-    nRet = trigActivationEnumNode.setValueBySymbol(byref(trigActivationEnumNode), b"RisingEdge")
+    nRet = trigActivationEnumNode.setValueBySymbol(byref(trigActivationEnumNode), b"FallingEdge")
     if ( nRet != 0 ):
         print("set TriggerActivation value [RisingEdge] fail!")
         # 释放相关资源
@@ -485,7 +485,7 @@ def demo():
         return -1
 
     isGrab = True
-    setUserOutputValue0(camera,True)
+    setUserOutputValue0(camera,False)
     
     while isGrab :
         # 软触发取一张图
@@ -505,9 +505,9 @@ def demo():
         
             if os.path.exists(r):
                 print('Detect IG ===')
-                setUserOutputValue0(camera,False)
-                time.sleep(1.5)
                 setUserOutputValue0(camera,True)
+                time.sleep(1.5)
+                setUserOutputValue0(camera,False)
                 os.remove(r)
             if cnt == 1 :
                 break
@@ -520,7 +520,7 @@ def demo():
         #    setUserOutputValue0(camera,True)
         # 主动取图
         frame = pointer(GENICAM_Frame())
-        nRet = streamSource.contents.getFrame(streamSource, byref(frame), c_uint(80000))
+        nRet = streamSource.contents.getFrame(streamSource, byref(frame), c_uint(10000000))
 
 
         
@@ -589,9 +589,10 @@ def demo():
         t1 = t +'M'+m_n +'.jpg'
         img_c = cv2.resize(cvImage,(2048,2048),interpolation=cv2.INTER_LANCZOS4) 
         cv2.imwrite(t1,img_c)    
+        time.sleep(0.5)
         #T = False
             #cv2.imshow('myWindow', cvImage)
-        send_240112.code(m_n)
+        send_240112.run(m_n)
         gc.collect()
     
         #os.system('sudo echo 3 > /proc/sys/vm/drop_caches')
