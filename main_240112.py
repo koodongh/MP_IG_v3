@@ -16,6 +16,7 @@ import cv2
 import gc
 import os
 import sys
+import send_240112
 
 g_cameraStatusUserInfo = b"statusInfo"
 
