@@ -13,7 +13,7 @@ def run_1():
         print("not found!")
         path = '/home/user/cam/share/Python'
         os.chdir(path)
-        os.system("sudo python3 /home/user/cam/share/Python/_main.py &")
+        os.system("sudo python3 /home/user/cam/share/Python/main_240112.py &")
         # 해당 프로그램을 다시 실행한다. 백그라운드에서 실행할 경우 &기호를 붙인다.
         print("restarted!")
     else:
