@@ -21,7 +21,7 @@ import send_240112
 g_cameraStatusUserInfo = b"statusInfo"
 
 global m_n
-m_n = 'M2901'
+m_n = '2901'
 
 
 def restart():
@@ -509,7 +509,7 @@ def demo():
                 time.sleep(1.5)
                 setUserOutputValue0(camera,True)
                 os.remove(r)
-            if cnt == 7 :
+            if cnt == 1 :
                 break
             
             else:
@@ -586,13 +586,15 @@ def demo():
             os.mkdir(r_)        
         t = '/home/user/_SEND/'
         #m_n = 'M1907'
-        t1 = t + m_n +'.jpg'
+        t1 = t +'M'+m_n +'.jpg'
         img_c = cv2.resize(cvImage,(2048,2048),interpolation=cv2.INTER_LANCZOS4) 
         cv2.imwrite(t1,img_c)    
         #T = False
             #cv2.imshow('myWindow', cvImage)
+        send_240112.code(m_n)
         gc.collect()
-        os.system('sudo echo 3 > /proc/sys/vm/drop_caches')
+    
+        #os.system('sudo echo 3 > /proc/sys/vm/drop_caches')
            # time.sleep(5)
         #else:
         #    pass
