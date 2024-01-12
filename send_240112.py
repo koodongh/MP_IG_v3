@@ -26,10 +26,10 @@ def run(code):
 
 
         # 업로드할 URL (메인 컴퓨터의 Flask API 엔드포인트)
-        upload_url = 'http://202.31.101.254:' +str(code)+'/upload'  # 메인 컴퓨터의 IP 주소로 변경해야 합니다.
+        upload_url = 'http://202.31.101.250:' +str(code)+'/upload'  # 메인 컴퓨터의 IP 주소로 변경해야 합니다.
 
         if os.path.exists(image_file_path):
-            print('Permission Check : ======== ',os.access(t1,os.F_OK))
+            print('Permission Check : ======== ',os.access(image_file_path,os.F_OK))
             if os.access(image_file_path,os.F_OK) == False:
                 time.sleep(0.5)
 
@@ -79,7 +79,7 @@ def run(code):
 
 if __name__ == "__main__":
     try:
-        code = 2901
+        #code = 2901
         run(code)
     except Exception as e:
         print('ERROR ====' ,e)
