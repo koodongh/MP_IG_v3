@@ -20,9 +20,6 @@ import send_240112
 
 g_cameraStatusUserInfo = b"statusInfo"
 
-global T
-T = False
-
 global m_n
 m_n = 'M2901'
 
